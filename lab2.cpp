@@ -7,7 +7,7 @@ using namespace std;
 bool moveMin(vector<int> &in, vector<int> &out){
   int flag = true;
   int temp;
-  for (int i = 0;i<in.size();i++){
+
 
     for (int j = in.size()-1; j >0; j--) {
      
@@ -18,9 +18,10 @@ bool moveMin(vector<int> &in, vector<int> &out){
         in[j - 1] = temp;
         
       }
-    }
-}
-return true;
+      else
+        {break;}
+    };
+    return true;
 }
 bool testMoveMin(){
   vector<int> temp,temp2;
@@ -42,8 +43,7 @@ bool testMoveMin(){
  
 
    sort(temp2.begin(),temp2.end());
-   cout << (temp == temp2) << endl;
-
+   
    moveMin(temp, temp2);
 
    if (temp == temp2) {
