@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <sys/time.h>
 using namespace std;
 
 
@@ -52,4 +54,29 @@ bool testMoveMin(){
   return false;
 }
 
-int main() { cout << testMoveMin(); }
+int main() {
+  struct timeval start, end;
+
+  // start timer.
+  gettimeofday(&start, NULL);
+
+  // unsync the I/O of C and C++.
+  ios_base::sync_with_stdio(false);
+
+  cout << testMoveMin()<<endl;
+
+  gettimeofday(&end, NULL);
+
+  // Calculating total time taken by the program.
+  double time_taken;
+
+  time_taken = (end.tv_sec - start.tv_sec) * 1e6;
+  time_taken = (time_taken + (end.tv_usec -
+                              start.tv_usec)) *
+               1e-6;
+
+  cout << "Time taken by program is : " << fixed
+       << time_taken ;
+  cout << " sec" << endl;
+  return 0;
+  }
